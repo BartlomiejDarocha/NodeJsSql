@@ -14,3 +14,7 @@
       return error.message;
     }
  }
+
+ module.exports = {
+  getEvents
+ }

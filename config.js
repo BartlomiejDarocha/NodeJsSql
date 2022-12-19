@@ -10,7 +10,7 @@ assert(HOST, 'HOST is required');
 module.exports = {
   port: PORT,
   host: HOST,
-  url: HOST_URL,
+  url: HOST_URL, 
   sql: {
     server: SQL_SERVER,
     database: SQL_DATABASE,
