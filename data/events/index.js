@@ -7,7 +7,9 @@
     try {
       let pool = await sql.connect(config.sql);
       const sqlQueries = utils.loadSqlQueries('events');
+      console.log(await sqlQueries.eventsList, 'sqlQueries')
       const list = await pool.request().query(sqlQueries.eventsList);
+      console.log(list, 'list')
       return list.recordset;
       
     } catch (error) {
