@@ -1,16 +1,17 @@
 'use strict'
 
- const eventData = require('../data/events');
+const eventData = require('../data/events');
 
- const getEvents = async (req, res, next) => {
+const getAllEvents = async (req, res, next) => {
   try {
-    const events = await eventData.getEvents();
-    res.send(events);
+    const eventlist = await eventData.getEvents();
+    res.send(eventlist);        
   } catch (error) {
     res.status(400).send(error.message);
-  }
- }
+}
+
+}
 
  module.exports = {
-  getEvents
+  getAllEvents
  }

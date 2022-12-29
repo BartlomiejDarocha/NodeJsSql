@@ -1,21 +1,18 @@
-'use strict'
- const utils = require('../utils');
- const config = require('../../config');
- const sql = require('mssql');
+'use strict';
+const utils = require('../utils');
+const config = require('../../config');
+const sql = require('mssql');
 
- const getEvents = async () => {
+const getEvents = async () => {
     try {
-      let pool = await sql.connect(config.sql);
-      const sqlQueries = utils.loadSqlQueries('events');
-      console.log(await sqlQueries.eventsList, 'sqlQueries')
-      const list = await pool.request().query(sqlQueries.eventsList);
-      console.log(list, 'list')
-      return list.recordset;
-      
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('events');
+        const eventsList = await pool.request().query(sqlQueries.eventslist);
+        return eventsList.recordset;
     } catch (error) {
-      return error.message;
+        console.log(error.message);
     }
- }
+}
 
  module.exports = {
   getEvents
