@@ -25,7 +25,27 @@ const getEventById = async (eventId) => {
     }
 }
 
+const createEvent = async (eventData) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('events');
+        const insertEvent = await pool.request()
+                            .input('eventTitle', sql.NVarChar(100), eventData.eventTitle)
+                            .input('eventDescription', sql.NVarChar(1500), eventData.eventDescription)
+                            .input('startDate', sql.Date(100), eventData.startDate)
+                            .input('endDate', sql.Date(100), eventData.endDate)
+                            .input('aveneu', sql.NVarChar(200), eventData.aveneu)
+                            .input('maxMembers', sql.NVarChar(200), eventData.maxMembers)
+                            .query(sqlQueries.createEvent);
+        return insertEvent.recordset;
+    } catch (error) {
+        return error.message
+    }
+}
+
+
  module.exports = {
   getEvents,
-  getEventById
+  getEventById,
+  createEvent
  }
