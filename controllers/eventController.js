@@ -30,8 +30,20 @@ const addEvent = async (req, res, next) => {
   }
 }
 
+const updateEvent = async (req, res, next) => {
+  try {
+    const eventId = req.params.id;
+    const data = req.body;
+    const upDated = await eventData.updateEvent(eventId, data);
+    res.send(upDated);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+}
+
  module.exports = {
   getAllEvents,
   getEvent,
-  addEvent
+  addEvent,
+  updateEvent
  }
