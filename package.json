@@ -16,7 +16,8 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "fs-extra": "^9.0.1",
-    "mssql": "^6.2.3"
+    "mssql": "^6.2.3",
+    "redis": "^4.6.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
